@@ -8,7 +8,6 @@ PII_PATTERNS: dict[str, str] = {
     "phone_vn": r"(?<!\d)(?:\+84|0)(?:[ .-]?\d){9}(?!\d)",
     "cccd": r"\b\d{12}\b",
     "credit_card": r"\b\d{4}[- ]?\d{4}[- ]?\d{4}[- ]?\d{4}\b",
-    # TODO: Add more patterns (e.g., Passport, Vietnamese address keywords)
 }
 
 
@@ -19,7 +18,7 @@ def scrub_text(text: str) -> str:
     return safe
 
 
-def summarize_text(text: str, max_len: int = 80) -> str:
+def summarize_text(text: str, max_len: int = 140) -> str:
     safe = scrub_text(text).strip().replace("\n", " ")
     return safe[:max_len] + ("..." if len(safe) > max_len else "")
 
